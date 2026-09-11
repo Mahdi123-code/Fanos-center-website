@@ -1046,11 +1046,12 @@ a {
 }
 
 
-.course-card .card-img-top {
+
+.course-card .card-img-top, .card .card-img-top {
 
     width: 100%;
 
-    height: 180px;
+    height: 220px;
 
     object-fit: cover;
 
@@ -4425,4 +4426,2083 @@ body.login-modal-open {
         font-size: 1.55rem;
     }
 
+}
+
+
+
+
+/* ==========================================================================
+   ۱. سیستم طراحی و متغیرهای رنگی لوکس (فارسی و آکادمیک)
+   ========================================================================== */
+:root {
+    --bg-ivory: #FAF9F6;
+    --text-primary: #1A1A1A;
+    --academic-blue: #0F172A;
+    --text-muted: #555555;
+    --border-color: rgba(15, 23, 42, 0.08);
+    --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-ivory);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   ۲. ساختار کانتینر هیرو با منطق لایوت RTL
+   ========================================================================== */
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    max-width: 1200px;
+    margin-inline: auto; /* تراز منطقی وسط‌چین */
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+    width: 100%;
+}
+
+/* ==========================================================================
+   ۳. ستون متن و تایپوگرافی (سمت راست در سیستم RTL)
+   ========================================================================== */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* تراز بر اساس راست‌چین فارسی */
+    text-align: start;
+}
+
+.eyebrow-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--academic-blue);
+    opacity: 0.5;
+}
+
+.eyebrow-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--academic-blue);
+    opacity: 0.8;
+}
+
+.hero-headline {
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 700;
+    color: var(--academic-blue);
+    line-height: 1.2;
+    max-width: 600px;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+.hero-paragraph {
+    font-size: 18px;
+    line-height: 1.8; /* فاصله خطوط استاندارد متون فارسی جهت خوانایی */
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 40px;
+}
+
+/* گروه دکمه‌های فراخوانی */
+.cta-group {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   ۴. ستون تصویر و تنظیم دقیق اورلپ با ویژگی‌های منطقی (Logical)
+   ========================================================================== */
+.hero-visual {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.image-wrapper {
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #EFEFEF;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-premium);
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.04);
+}
+
+/* حل قطعی مشکل تصویر با جایگزینی جادویی inset-inline-end برای اورلپ در زبان فارسی */
+.floating-badge {
+    position: absolute;
+    bottom: 32px;
+    inset-inline-end: -24px; /* بدون تداخل با لبه صفحه، باکس را به درستی اورلپ می‌کند */
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.05);
+    max-width: 220px;
+}
+
+.badge-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--academic-blue);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.badge-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ۵. واکنش‌گرایی کاملاً ریسپانسیو (Responsive Flow)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .hero-visual {
+        justify-content: center;
+    }
+
+    .floating-badge {
+        inset-inline-end: 16px; /* اصلاح موقعیت در نمایشگر تبلت */
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-section {
+        padding: 48px 16px;
+    }
+
+    .cta-group {
+        flex-direction: column;
+    }
+
+}
+
+
+/* ==========================================================================
+   بخش اختصاصی و اصلاح‌شده: Who We Are Section (سازگار با RTL/LTR)
+   ========================================================================== */
+.about-section {
+    padding: 140px 24px;
+    overflow: hidden;
+}
+
+.about-max-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    max-width: 820px;
+    margin-bottom: 80px;
+}
+
+.section-header .eyebrow-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.section-header .eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--color-academic);
+    opacity: 0.4;
+}
+
+.section-header .eyebrow-label {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--color-academic);
+}
+
+.section-headline {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: var(--color-academic);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+.section-intro {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+/* شبکه دو ستونه نامتقارن - با تعیین جهت قرارگیری محتوا */
+.about-main-grid {
+    display: grid;
+    grid-template-columns: 46% 54%;
+    gap: 90px;
+    align-items: start;
+}
+
+/* ستون تصاویر لایه‌ای */
+.visual-column {
+    position: relative;
+    width: 100%;
+}
+
+.primary-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #EAE9E6;
+}
+
+/* اصلاح اورلپ تصویر ثانویه با ویژگی‌های منطقی جهت جلوگیری از به‌هم‌ریختگی در RTL */
+.secondary-image-wrapper {
+    position: absolute;
+    width: 55%;
+    aspect-ratio: 1 / 1;
+    bottom: -40px;
+    inset-inline-end: -30px; /* جایگزین right شد تا در زبان فارسی به چپ منتقل شود */
+    border-radius: 16px;
+    overflow: hidden;
+    border: 8px solid var(--color-bg);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+    background-color: #EAE9E6;
+}
+
+.editorial-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-premium);
+}
+
+.primary-image-wrapper:hover .editorial-img,
+.secondary-image-wrapper:hover .editorial-img {
+    transform: scale(1.05);
+}
+
+/* ستون محتوای متنی */
+.story-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.purpose-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+.story-paragraph {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+}
+
+/* اصلاح خط عمودی کنار نقل‌قول با ویژگی منطقی border-inline-start */
+.quote-block {
+    margin: 24px 0 48px 0;
+    padding-inline-start: 24px; /* جایگزین padding-left شد */
+    border-inline-start: 2px solid var(--color-academic); /* جایگزین border-left شد */
+}
+
+.quote-text {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--color-academic);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.quote-author {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    font-style: normal;
+}
+
+/* لیست عمودی اطلاعات حمایتی */
+.points-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 56px;
+}
+
+.point-item {
+    display: flex;
+    align-items: start;
+    gap: 24px;
+}
+
+.point-number {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--color-academic);
+    line-height: 1;
+    opacity: 0.4;
+}
+
+.point-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-academic);
+    margin-bottom: 6px;
+}
+
+.point-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+/* عنصر آماری بصری */
+.stat-element {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 32px;
+    margin-top: 12px;
+}
+
+.stat-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--color-academic);
+}
+
+.stat-connector {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0 6px;
+}
+
+.stat-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-academic);
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+}
+
+/* کلاس‌های انیمیشن اسکرول */
+.reveal-scroll, .reveal-img-scroll, .reveal-img-delayed-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+}
+
+.reveal-img-scroll { transform: scale(1.03) translateY(20px); }
+.reveal-img-delayed-scroll { transform: scale(0.97) translateY(40px); transition-delay: 0.15s; }
+
+.reveal-scroll.active, .reveal-img-scroll.active, .reveal-img-delayed-scroll.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* بهینه‌سازی واکنش‌گرایی مینی‌مال */
+@media (max-width: 1024px) {
+    .about-section { padding: 90px 24px; }
+    .about-main-grid { grid-template-columns: 1fr; gap: 80px; }
+    .secondary-image-wrapper { inset-inline-end: 20px; bottom: -30px; }
+}
+
+@media (max-width: 640px) {
+    .about-section { padding: 70px 16px; }
+    .section-headline { font-size: 30px; }
+    .quote-text { font-size: 24px; }
+    .secondary-image-wrapper { position: relative; width: 100%; inset-inline-end: 0; bottom: 0; margin-top: 16px; border: none; }
+}
+
+
+/* ==========================================================================
+   بخش اصلاح‌شده و کاملاً واکنش‌گرا: محورهای اصلی (Three Pillars RTL)
+   ========================================================================== */
+.pillars-section {
+    background-color: var(--color-bg, #FAF9F6);
+    padding-block: clamp(60px, 8vw, 140px); /* پدینگ عمودی شناور بر اساس اندازه صفحه */
+    padding-inline: 24px;
+    position: relative;
+    width: 100%;
+}
+
+.pillars-max-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+/* هدر و بخش معرفی */
+.pillars-intro-block {
+    text-align: start;
+    margin-bottom: clamp(40px, 6vw, 72px);
+    max-width: 850px;
+}
+
+.pillars-eyebrow-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.pillars-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--color-academic, #0F172A);
+    opacity: 0.4;
+}
+
+.pillars-eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-academic, #0F172A);
+}
+
+.pillars-main-heading {
+    font-size: clamp(28px, 4vw, 48px); /* مقیاس‌پذیری هوشمند فونت تیتر */
+    font-weight: 700;
+    color: var(--color-academic, #0F172A);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.pillars-supporting-text {
+    font-size: clamp(16px, 1.8vw, 18.5px);
+    line-height: 1.8;
+    color: var(--color-text-muted, #555555);
+}
+
+/* ─── کانتینر شبکه ریسپانسیو هوشمند (Fluid Grid) ─── */
+.pillars-grid-container {
+    display: grid;
+    /* توزیع خودکار فضا بر اساس عرض صفحه بدون شکستگی ساختار */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px; 
+    position: relative;
+    align-items: stretch; /* هم‌ارتفاع کردن خودکار تمام کارت‌ها در یک ردیف */
+    margin-bottom: clamp(40px, 6vw, 80px);
+}
+
+/* خط اتصال مفهومی - اصلاح شده جهت جلوگیری از تداخل بصری */
+.pillars-connecting-line {
+    position: absolute;
+    top: 60px;
+    inset-inline-start: 15%;
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(to left, transparent, rgba(15, 23, 42, 0.08) 20%, rgba(15, 23, 42, 0.08) 80%, transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ─── استایل مهندسی‌شده کارت‌ها ─── */
+.pillar-card {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    border-radius: 16px;
+    padding: clamp(24px, 4vw, 40px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* متاداده هدر کارت */
+.pillar-header-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.pillar-number {
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--color-academic, #0F172A);
+    opacity: 0.15;
+    line-height: 1;
+    transition: opacity 0.4s ease;
+}
+
+.pillar-icon {
+    color: var(--color-academic, #0F172A);
+    width: 28px;
+    height: 28px;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+.pillar-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.pillar-title {
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 700;
+    color: var(--color-academic, #0F172A);
+    margin-bottom: 12px;
+}
+
+.pillar-description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-text-muted, #555555);
+    flex-grow: 1; /* پر کردن خودکار فضای خالی کارت جهت همترازی نهایی دکمه */
+}
+
+.pillar-action-arrow {
+    margin-top: 24px;
+    color: var(--color-academic, #0F172A);
+    width: 20px;
+    height: 20px;
+    opacity: 0.25;
+    transform: scaleX(1); /* حفظ جهت طبیعی در RTL */
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* کارت شاخص (دانش) */
+.pillar-featured {
+    background-color: #ffffff;
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.02);
+}
+
+.pillar-featured .pillar-number { opacity: 0.3; }
+.pillar-featured .pillar-icon { opacity: 1; }
+
+/* ─── تعاملات هاور (Hover Interactions) ─── */
+.pillar-card:hover {
+    transform: translateY(-6px);
+    background-color: #ffffff;
+    border-color: rgba(15, 23, 42, 0.12);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
+}
+
+.pillar-card:hover .pillar-number { opacity: 0.35; }
+.pillar-card:hover .pillar-icon { opacity: 1; transform: scale(1.05); }
+.pillar-card:hover .pillar-action-arrow {
+    opacity: 1;
+    transform: translateX(-6px); /* حرکت مینی‌مال و ظریف پیکان به سمت جلو در ساختار فارسی */
+}
+
+/* بیانیه پایانی بخش */
+.pillars-footer-statement {
+    text-align: center;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 40px;
+    margin-top: 16px;
+}
+
+.pillars-quote {
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 500;
+    color: var(--color-academic, #0F172A);
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   ۵. نقاط شکست و مدیا کوئری‌های ریسپانسیو دقیق (Breakpoints)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    /* تغییر ابعاد شبکه برای نمایشگر تبلت و لپ‌تاپ‌های کوچک */
+    .pillars-grid-container {
+        grid-template-columns: repeat(2, 1fr); /* دو ستونه شدن در تبلت افقی */
+        gap: 24px;
+    }
+    
+    .pillars-connecting-line {
+        display: none; /* حذف خط پیوند در چیدمان چند ردیفه */
+    }
+}
+
+@media (max-width: 768px) {
+    .pillars-grid-container {
+        grid-template-columns: 1fr; /* تک ستونه و پشته‌ای شدن کامل برای تبلت عمودی و موبایل */
+        gap: 20px;
+    }
+    
+    .pillar-card {
+        padding: 32px 24px; /* کاهش پدینگ داخلی در دستگاه‌های کوچک */
+    }
+}
+
+@media (max-width: 480px) {
+    .pillars-section {
+        padding-inline: 16px; /* استفاده بهینه از لبه‌های صفحه در موبایل‌های باریک */
+    }
+    
+    .pillar-card {
+        padding: 24px 20px;
+    }
+}
+
+
+/* ==========================================================================
+   بخش اختصاصی: ماموریت و چشم‌انداز (Mission & Vision RTL Responsive)
+   ========================================================================== */
+.mv-section {
+    background-color: var(--bg-ivory, #FAF9F6);
+    padding-block: clamp(80px, 10vw, 150px);
+    padding-inline: 24px;
+    width: 100%;
+}
+
+.mv-max-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+/* معرفی و هدر بخش */
+.mv-intro-block {
+    text-align: start;
+    margin-bottom: clamp(48px, 6vw, 80px);
+    max-width: 850px;
+}
+
+.mv-eyebrow-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.mv-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--academic-blue, #0F172A);
+    opacity: 0.4;
+}
+
+.mv-eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--academic-blue, #0F172A);
+}
+
+.mv-main-heading {
+    font-size: clamp(30px, 4.2vw, 52px);
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.mv-supporting-text {
+    font-size: clamp(17px, 1.8vw, 19px);
+    line-height: 1.8;
+    color: var(--text-muted, #555555);
+}
+
+/* ─── کانتینر شبکه دو بخشی نامتقارن دسکتاپ ─── */
+.mv-grid-container {
+    display: grid;
+    /* ستون میانی برای المان اتصال عمودی در دسکتاپ اختصاص داده شده است */
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 16px;
+    align-items: stretch;
+    margin-bottom: clamp(60px, 8vw, 100px);
+}
+
+/* استایل عمومی پنل‌ها */
+.mv-panel {
+    background-color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    border-radius: 16px;
+    padding: clamp(32px, 5vw, 52px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mv-panel-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.mv-panel-number {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 300;
+    color: var(--academic-blue, #0F172A);
+    opacity: 0.2;
+    line-height: 1;
+    transition: opacity 0.4s ease;
+}
+
+.mv-panel-title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+}
+
+.mv-panel-statement {
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 600;
+    color: var(--academic-blue, #0F172A);
+    line-height: 1.45;
+    margin-bottom: 20px;
+}
+
+.mv-panel-desc {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: var(--text-muted, #555555);
+}
+
+/* ─── ویژگی‌های خاص پنل ماموریت (Grounded) ─── */
+.mv-panel-mission {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.mv-panel-accent-line {
+    position: absolute;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--academic-blue, #0F172A);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* تعامل هاور پنل ماموریت */
+.mv-panel-mission:hover {
+    transform: translateY(-4px);
+    background-color: #ffffff;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03);
+}
+
+.mv-panel-mission:hover .mv-panel-number { opacity: 0.4; }
+.mv-panel-mission:hover .mv-panel-accent-line { width: 100%; }
+
+/* ─── ویژگی‌های خاص پنل چشم‌انداز (Aspirational Visual) ─── */
+.mv-panel-vision {
+    background-color: var(--academic-blue, #0F172A);
+    border: none;
+}
+
+.mv-panel-vision .mv-panel-title,
+.mv-panel-vision .mv-panel-statement {
+    color: #ffffff;
+}
+
+.mv-panel-vision .mv-panel-desc {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.mv-panel-vision .mv-panel-number {
+    color: #ffffff;
+    opacity: 0.15;
+}
+
+/* مدیریت المان تصویر پس‌زمینه پنل چشم‌انداز */
+.mv-vision-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.08; /* شفافیت بسیار محو جهت عدم تداخل با خوانایی متن */
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s ease;
+}
+
+.mv-vision-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--academic-blue, #0F172A) 60%, transparent);
+    z-index: 2;
+}
+
+.mv-panel-content-wrapper {
+    position: relative;
+    z-index: 3;
+}
+
+/* تعامل هاور پنل چشم‌انداز */
+.mv-panel-vision:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px rgba(15, 23, 42, 0.15);
+}
+
+.mv-panel-vision:hover .mv-vision-bg-img {
+    opacity: 0.14; /* واضح‌تر شدن تصویر هنگام هاور بدون به خطر انداختن متن */
+    transform: scale(1.03);
+}
+
+/* ─── المان اتصال میانی دکوراتیو (Timeline Connection) ─── */
+.mv-central-connection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 4;
+}
+
+.mv-line-segment {
+    width: 1px;
+    flex-grow: 1;
+    background-color: rgba(15, 23, 42, 0.08);
+}
+
+.mv-circle-node {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--academic-blue, #0F172A);
+    margin-block: 16px;
+}
+
+.mv-circle-node svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+}
+
+/* ─── بخش نقل‌قول برجسته پایانی (Highlight Quote) ─── */
+.mv-quote-block {
+    text-align: center;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 56px;
+    margin-bottom: 64px;
+}
+
+.mv-large-quote {
+    font-size: clamp(22px, 3.2vw, 34px);
+    font-weight: 500;
+    color: var(--academic-blue, #0F172A);
+    line-height: 1.45;
+    margin-bottom: 12px;
+}
+
+.mv-quote-label {
+    font-size: 14px;
+    color: var(--text-muted, #555555);
+}
+
+/* ─── گروه ارزش‌های حمایتی مینی‌مال (Supporting Values) ─── */
+.mv-values-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    border-top: 1px solid rgba(15, 23, 42, 0.04);
+    padding-top: 48px;
+}
+
+.mv-value-item {
+    text-align: start;
+}
+
+.mv-value-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+    margin-bottom: 10px;
+    position: relative;
+    padding-inline-start: 16px;
+}
+
+/* نقطه دکوراتیو مینی‌مال کنار تیتر ارزش‌ها */
+.mv-value-title::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--academic-blue, #0F172A);
+    opacity: 0.5;
+}
+
+.mv-value-desc {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--text-muted, #555555);
+}
+
+/* ==========================================================================
+   ۳. مدیا کوئری‌های واکنش‌گرایی مطلق و پشته‌ای موبایل (Breakpoints)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    /* بازآرایی شبکه به دو ستون در تبلت‌ها و حذف ستون میانی اتصال */
+    .mv-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+    
+    .mv-central-connection {
+        display: none; /* حذف المان عمودی میانی در حالت تبلت و موبایل */
+    }
+    
+    .mv-panel {
+        padding: 40px 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* تبدیل به حالت تک ستونه عمودی در موبایل */
+    .mv-grid-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .mv-values-group {
+        grid-template-columns: 1fr; /* تبدیل لیست ارزش‌ها به ساختار عمودی در موبایل */
+        gap: 32px;
+    }
+    
+    .mv-quote-block {
+        padding-top: 40px;
+        margin-bottom: 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mv-section {
+        padding-inline: 16px;
+    }
+    
+    .mv-panel {
+        padding: 32px 20px;
+    }
+}
+
+/* پشتیبانی از کاربرانی که انیمیشن‌های سیستم را غیرفعال کرده‌اند */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* ==========================================================================
+   بخش اختصاصی: امکانات و خدمات (Bento Grid RTL Responsive)
+   ========================================================================== */
+.fac-section {
+    background-color: var(--bg-ivory, #FAF9F6);
+    padding-block: clamp(80px, 10vw, 150px);
+    padding-inline: 24px;
+    width: 100%;
+}
+
+.fac-max-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+/* هدر و معرفی بخش */
+.fac-intro-block {
+    text-align: start;
+    margin-bottom: clamp(48px, 6vw, 80px);
+    max-width: 850px;
+}
+
+.fac-eyebrow-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.fac-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--academic-blue, #0F172A);
+    opacity: 0.4;
+}
+
+.fac-eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--academic-blue, #0F172A);
+}
+
+.fac-main-heading {
+    font-size: clamp(30px, 4.2vw, 52px);
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.fac-supporting-text {
+    font-size: clamp(17px, 1.8vw, 19px);
+    line-height: 1.8;
+    color: var(--text-muted, #555555);
+}
+
+/* ─── مهندسی شبکه بنتو گرید نامتقارن دسکتاپ ─── */
+.fac-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* ۳ ستون هم‌اندازه در دسکتاپ */
+    gap: 28px;
+    margin-bottom: clamp(60px, 8vw, 100px);
+}
+
+/* استایل عمومی و مینی‌مال تمام کارت‌های بنتو */
+.fac-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    border-radius: 16px;
+    padding: clamp(28px, 4vw, 40px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fac-card-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.fac-card-header-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* مدیریت ابعاد متغیر نامتقارن کارت‌ها در دسکتاپ */
+.fac-bento-large {
+    grid-column: span 2; /* کتابخانه ۲ ستون از ۳ ستون را اشغال می‌کند */
+    grid-row: span 2;    /* ارتفاع ۲ برابری نسبت به کارت‌های فرعی */
+    min-height: 480px;
+    justify-content: flex-end;
+}
+
+.fac-bento-wide {
+    grid-column: span 2; /* رویدادها عریض و ۲ ستونه */
+}
+
+/* استایل کارت‌های دارای تصویر پس‌زمینه (کتابخانه و فرهنگ) */
+.fac-card-image {
+    color: #ffffff;
+}
+
+.fac-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fac-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.92) 20%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1));
+    z-index: 2;
+    transition: opacity 0.4s ease;
+}
+
+/* تایپوگرافی اختصاصی بنتو */
+.fac-number {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--academic-blue, #0F172A);
+    opacity: 0.2;
+    line-height: 1;
+}
+
+.fac-card-image .fac-number {
+    color: #ffffff;
+    opacity: 0.3;
+    margin-bottom: auto; /* هدایت شماره به بالاترین نقطه در کارت تصویری */
+}
+
+.fac-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: #B45309; /* رنگ اکانت ظریف برای برچسب فرعی */
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.fac-title {
+    font-size: clamp(22px, 2.5vw, 28px);
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+    margin-bottom: 12px;
+}
+
+.fac-card-image .fac-title {
+    color: #ffffff;
+}
+
+.fac-desc {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--text-muted, #555555);
+    flex-grow: 1;
+}
+
+.fac-card-image .fac-desc {
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 500px;
+    flex-grow: 0;
+    margin-bottom: 24px;
+}
+
+.fac-icon {
+    width: 26px;
+    height: 26px;
+    color: var(--academic-blue, #0F172A);
+    opacity: 0.6;
+    transition: transform 0.4s ease;
+}
+
+.fac-icon svg { width: 100%; height: 100%; }
+
+/* دکمه اکشن کتابخانه */
+.fac-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 4px;
+    transition: all 0.4s ease;
+}
+
+.fac-cta svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+/* لینک تعاملی بخش رویدادها */
+.fac-interactive-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--academic-blue, #0F172A);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.fac-interactive-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+/* ─── افکت‌های تعاملی هاور بنتو (Hover Dynamics) ─── */
+/* هاور کارت‌های متنی (صعود مینی‌مال) */
+.fac-card:not(.fac-card-image):hover {
+    transform: translateY(-5px);
+    border-color: rgba(15, 23, 42, 0.1);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03);
+}
+
+.fac-card:not(.fac-card-image):hover .fac-icon {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.fac-card:not(.fac-card-image):hover .fac-interactive-link svg {
+    transform: translateX(-4px); /* هدایت پیکان به جلو در زبان فارسی */
+}
+
+/* هاور کارت‌های تصویری (زوم عمق بک‌گراند) */
+.fac-card-image:hover .fac-bg-img {
+    transform: scale(1.03);
+}
+
+.fac-card-image:hover .fac-image-overlay {
+    opacity: 0.95;
+}
+
+.fac-card-image:hover .fac-cta svg {
+    transform: translateX(-4px);
+}
+
+/* بیانیه پایانی بخش */
+.fac-bottom-statement {
+    text-align: center;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 48px;
+    margin-bottom: 48px;
+}
+
+.fac-conclusion-quote {
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 500;
+    color: var(--academic-blue, #0F172A);
+}
+
+/* ─── نوار دسته‌بندی‌های توصیفی مینی‌مال ─── */
+.fac-categories-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    background-color: rgba(15, 23, 42, 0.02);
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    padding: 24px 32px;
+    border-radius: 12px;
+}
+
+.fac-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fac-strip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--academic-blue, #0F172A);
+    opacity: 0.4;
+}
+
+.fac-strip-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--academic-blue, #0F172A);
+}
+
+/* ==========================================================================
+   ۳. مدیا کوئری‌های واکنش‌گرایی بنتوی نامتقارن (Breakpoints)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    /* بازآرایی ساختار تبلت مطابق چیدمان پیشنهادی داکیومنت */
+    .fac-bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* دو ستونه شدن شبکه */
+        gap: 24px;
+    }
+    
+    .fac-bento-large {
+        grid-column: span 2; /* تمام عرض شدن کتابخانه در سطر اول تبلت */
+        min-height: 400px;
+    }
+    
+    .fac-bento-wide {
+        grid-column: span 2; /* تمام عرض شدن مسابقات */
+    }
+}
+
+@media (max-width: 768px) {
+    /* ساختار پشته‌ای تک‌ستونه کامل برای دستگاه‌های موبایل */
+    .fac-bento-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .fac-bento-large, .fac-bento-wide {
+        grid-column: span 1;
+        min-height: auto;
+    }
+    
+    .fac-card-image {
+        min-height: 320px; /* تنظیم ارتفاع ثابت متناسب برای تصاویر در موبایل */
+        justify-content: flex-end;
+    }
+    
+    .fac-categories-strip {
+        flex-direction: column; /* زیر هم قرار گرفتن نوار توصیفی در موبایل */
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fac-section {
+        padding-inline: 16px;
+    }
+    
+    .fac-card {
+        padding: 28px 20px;
+    }
+}
+
+
+/* ==========================================================================
+   بخش اختصاصی: تایم‌لاین داستان ما (Vertical Timeline RTL Responsive)
+   ========================================================================== */
+.story-section {
+    background-color: var(--bg-ivory, #FAF9F6);
+    padding-block: clamp(80px, 10vw, 150px);
+    padding-inline: 24px;
+    width: 100%;
+    position: relative;
+}
+
+.story-max-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+/* هدر و معرفی بخش */
+.story-intro-block {
+    text-align: start;
+    margin-bottom: clamp(60px, 8vw, 100px);
+    max-width: 850px;
+}
+
+.story-eyebrow-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.story-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--academic-blue, #0F172A);
+    opacity: 0.4;
+}
+
+.story-eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--academic-blue, #0F172A);
+}
+
+.story-main-heading {
+    font-size: clamp(30px, 4.2vw, 52px);
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.story-supporting-text {
+    font-size: clamp(17px, 1.8vw, 19px);
+    line-height: 1.8;
+    color: var(--text-muted, #555555);
+}
+
+/* ─── مهندسی ساختار متناوب تایم‌لاین دسکتاپ ─── */
+.timeline-wrapper {
+    position: relative;
+    width: 100%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* خط مرکزی تایم‌لاین */
+.timeline-center-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 50%;
+    width: 1px;
+    background-color: rgba(15, 23, 42, 0.08);
+    transform: translateX(50%); /* تراز دقیق بر اساس RTL */
+    z-index: 1;
+}
+
+/* نوار پیشرفت اسکرول داینامیک درون خط محوری */
+.timeline-progress-fill {
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 0%; /* افزایش مقدار توسط جاوااسکریپت به صورت پویا */
+    background-color: var(--academic-blue, #0F172A);
+    transition: height 0.1s linear;
+}
+
+/* المان ردیف‌های کارت‌ها */
+.timeline-item {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* تقسیم دسکتاپ به دو ستون مساوی */
+    align-items: start;
+}
+
+/* استایل مینی‌مال گره‌های دایره‌ای میانی تایم‌لاین */
+.timeline-badge-node {
+    position: absolute;
+    top: 32px;
+    inset-inline-start: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid rgba(15, 23, 42, 0.2);
+    transform: translateX(50%);
+    z-index: 3;
+    transition: all 0.5s ease;
+}
+
+/* اعمال تناوب ساختاری چپ و راست ژورنالی بر اساس ساختار RTL */
+.timeline-item:nth-child(odd) .timeline-content-card {
+    grid-column: 1; /* ردیف‌های فرد در سمت راست در لایوت فارسی */
+    padding-inline-end: clamp(40px, 5vw, 80px);
+    text-align: start;
+    align-self: start;
+}
+
+.timeline-item:nth-child(even) .timeline-content-card {
+    grid-column: 2; /* ردیف‌های زوج در سمت چپ */
+    padding-inline-start: clamp(40px, 5vw, 80px);
+    text-align: start;
+}
+
+/* استایل کارت‌های اطلاعاتی ژورنالی */
+.timeline-content-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-year {
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 700;
+    color: #B45309; /* رنگ مکمل ظریف برای سال‌ها */
+    margin-bottom: 12px;
+}
+
+.timeline-year.highlight-year {
+    color: var(--academic-blue, #0F172A);
+}
+
+.timeline-event-title {
+    font-size: clamp(22px, 2.5vw, 28px);
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+    margin-bottom: 14px;
+}
+
+.timeline-event-desc {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: var(--text-muted, #555555);
+}
+
+/* فریم رسانه و تصویر انتخابی تایم‌لاین */
+.timeline-event-media {
+    margin-top: 24px;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: rgba(15, 23, 42, 0.03);
+}
+
+.timeline-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-content-card:hover .timeline-img {
+    transform: scale(1.03);
+}
+
+/* تمایز جزئی کارت آینده */
+.timeline-card-future {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px dashed rgba(15, 23, 42, 0.1);
+    padding: 32px;
+    border-radius: 16px;
+    margin-top: 12px;
+}
+
+/* ─── استایل نهایی بلوک دعوت به مشارکت (Future Ending) ─── */
+.story-future-block {
+    text-align: center;
+    max-width: 700px;
+    margin-inline: auto;
+    margin-top: clamp(80px, 10vw, 120px);
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding-top: 64px;
+}
+
+.story-future-title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--academic-blue, #0F172A);
+    margin-bottom: 16px;
+}
+
+.story-future-desc {
+    font-size: 17.5px;
+    line-height: 1.8;
+    color: var(--text-muted, #555555);
+    margin-bottom: 36px;
+}
+
+.story-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--academic-blue, #0F172A);
+    color: #ffffff;
+    padding: 16px 36px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-cta-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.story-cta-btn:hover {
+    background-color: #1A1A1A;
+}
+
+.story-cta-btn:hover svg {
+    transform: translateX(-4px); /* هدایت پیکان به جلو در زبان فارسی */
+}
+
+/* ─── انیمیشن‌ها و وضعیت فعال تعاملی اسکرول ─── */
+.reveal-timeline-card {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+.reveal-timeline-card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تغییر وضعیت گره فعال تایم‌لاین هنگام اسکرول */
+.reveal-timeline-card.active .timeline-badge-node {
+    background-color: var(--academic-blue, #0F172A);
+    border-color: var(--academic-blue, #0F172A);
+    box-shadow: 0 0 0 6px rgba(15, 23, 42, 0.08);
+    transform: translateX(50%) scale(1.2);
+}
+
+/* ==========================================================================
+   ۳. نقاط شکست ریسپانسیو و چینش یک‌دست عمودی موبایل (Breakpoints)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .timeline-center-line {
+        inset-inline-start: 16px; /* انتقال خط محوری به لبه کناری در تبلت و موبایل */
+        transform: none;
+    }
+    
+    .timeline-badge-node {
+        inset-inline-start: 16px;
+        transform: translateX(50%);
+    }
+
+    .reveal-timeline-card.active .timeline-badge-node {
+        transform: translateX(50%) scale(1.2);
+    }
+    
+    .timeline-item {
+        grid-template-columns: 1fr; /* تبدیل کل شبکه به حالت تک ستونه */
+        padding-inline-start: 48px; /* تراز کل محتوا با فاصله مناسب از خط کناری */
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content-card,
+    .timeline-item:nth-child(even) .timeline-content-card {
+        grid-column: 1;
+        padding-inline-end: 0;
+        padding-inline-start: 0;
+    }
+    
+    .timeline-card-future {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-section {
+        padding-inline: 16px;
+    }
+    
+    .timeline-item {
+        padding-inline-start: 36px;
+    }
+    
+    .timeline-center-line, .timeline-badge-node {
+        inset-inline-start: 8px;
+    }
+}
+
+
+
+/* ==========================================================================
+   بخش اختصاصی: گالری نامتقارن مجله‌ای (Asymmetric Masonry RTL)
+   ========================================================================== */
+.gallery-section {
+    background-color: var(--color-bg, #FAF9F6);
+    padding-block: clamp(80px, 10vw, 150px);
+    padding-inline: 24px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* کلمه تزئینی بسیار محو پس‌زمینه بر اساس الفبای فارسی */
+.gallery-bg-watermark {
+    position: absolute;
+    bottom: -20px;
+    inset-inline-start: -20px;
+    font-size: clamp(140px, 18vw, 260px);
+    font-weight: 900;
+    color: var(--color-academic, #0F172A);
+    opacity: 0.015;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gallery-max-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* هدر گالری */
+.gallery-intro-block {
+    text-align: start;
+    margin-bottom: 48px;
+    max-width: 850px;
+}
+
+.gallery-eyebrow-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.gallery-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background-color: var(--color-academic, #0F172A);
+    opacity: 0.4;
+}
+
+.gallery-eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-academic, #0F172A);
+}
+
+.gallery-main-heading {
+    font-size: clamp(30px, 4.2vw, 52px);
+    font-weight: 700;
+    color: var(--color-academic, #0F172A);
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.gallery-supporting-text {
+    font-size: clamp(17px, 1.8vw, 19px);
+    line-height: 1.8;
+    color: var(--color-text-muted, #555555);
+}
+
+/* ─── فیلتر دسته‌بندی مینی‌مال لوکس ─── */
+.gallery-filter-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+    padding-bottom: 16px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-muted, #555555);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.4s ease;
+}
+
+.filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -17px;
+    inset-inline-start: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-academic, #0F172A);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-btn.active {
+    color: var(--color-academic, #0F172A);
+}
+
+.filter-btn.active::after {
+    width: 100%;
+}
+
+/* ─── طراحی بنتوی نامتقارن گالری (Asymmetric Editorial Masonry) ─── */
+.gallery-masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 28px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #EFEFEF;
+    cursor: pointer;
+    height: 100%;
+    display: block;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* تقسیم وزن اختصاصی ابعاد کارت‌ها در دسکتاپ */
+.item-featured {
+    grid-column: span 7;
+    grid-row: span 2;
+    min-height: 480px;
+}
+
+.item-medium {
+    grid-column: span 5;
+    min-height: 226px;
+}
+
+.item-small {
+    grid-column: span 4;
+    min-height: 260px;
+}
+
+/* تنظیم اورلپ و اطلاعات روی تصویر (Hover Overlay) */
+.item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 15%, rgba(15, 23, 42, 0.3) 60%, transparent);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    opacity: 0; /* مخفی در حالت عادی */
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+
+.item-tag {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.item-caption {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.item-expand-icon {
+    position: absolute;
+    top: 24px;
+    inset-inline-end: 24px;
+    color: #ffffff;
+    width: 24px;
+    height: 24px;
+    opacity: 0.6;
+}
+
+/* ─── افکت تعاملی هاور گالری ─── */
+.gallery-item:hover .gallery-img {
+    transform: scale(1.04);
+}
+
+.gallery-item:hover .item-overlay {
+    opacity: 1;
+}
+
+/* کلاس انیمیشن پنهان‌سازی فیلتر */
+.gallery-item.is-hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   ۴. استایل لایت‌باکس پیشرفته (Premium Lightbox UI)
+   ========================================================================== */
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(16px);
+    z-index: 9999;
+    display: none; /* پیش‌فرض مخفی */
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-container {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-main-img {
+    max-height: 70vh;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    transform: scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-lightbox.active .lightbox-main-img {
+    transform: scale(1);
+}
+
+/* پنل متادیتا پایین لایت‌باکس */
+.lightbox-meta-panel {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 16px;
+    color: #ffffff;
+}
+
+.lightbox-category {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.lightbox-caption {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.lightbox-counter {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* کلیدهای کنترلی مینی‌مال */
+.lightbox-close {
+    position: absolute;
+    top: 24px;
+    inset-inline-end: 24px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 36px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10000;
+}
+
+.lightbox-nav svg { width: 20px; height: 20px; }
+.lightbox-nav:hover { background-color: #ffffff; color: #000000; }
+
+/* پوزیشن ناوبری منطقی بر اساس لایوت فارسی */
+.nav-prev { inset-inline-start: 40px; }
+.nav-next { inset-inline-end: 40px; }
+
+.lightbox-close:hover { opacity: 1; }
+
+/* ==========================================================================
+   ۵. نقاط شکست ریسپانسیو کاملاً سیال (RTL Breakpoints)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .gallery-filter-container {
+        overflow-x: auto; /* اسکرول افقی نرم فیلترها در تبلت و موبایل */
+        white-space: nowrap;
+        padding-bottom: 8px;
+    }
+    
+    .gallery-filter-container::-webkit-scrollbar { height: 0; } /* حذف نوار اسکرول زشت */
+
+    .gallery-masonry-grid {
+        grid-template-columns: repeat(2, 1fr); /* دو ستونه شدن در تبلت */
+        gap: 20px;
+    }
+
+    .item-featured, .item-medium, .item-small {
+        grid-column: span 1;
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-masonry-grid {
+        grid-template-columns: 1fr; /* تک ستونه عمودی کامل در موبایل */
+        gap: 16px;
+    }
+    
+    .item-featured, .item-medium, .item-small {
+        min-height: 240px;
+    }
+    
+    .lightbox-nav {
+        display: none; /* حذف دکمه ناوبری بغل در موبایل و تکیه بر تاچ */
+    }
+    
+    .lightbox-meta-panel {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* کاهش یا غیرفعال‌سازی انیمیشن‌ها بر اساس تنظیمات سیستم کاربر */
+@media (prefers-reduced-motion: reduce) {
+    .gallery-item, .gallery-img, .item-overlay, .gallery-lightbox {
+        transition: none !important;
+        transform: none !important;
+    }
 }

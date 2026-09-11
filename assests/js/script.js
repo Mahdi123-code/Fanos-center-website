@@ -877,3 +877,173 @@ function initializeCourseCarousel() {
 
 
 })();
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // ۱. انیمیشن آبشاری (Staggered) برای المان‌های متنی سمت راست
+    const textItems = document.querySelectorAll('.animate-item');
+    
+    textItems.forEach((item, index) => {
+        // ایجاد تأخیر زمانی منظم برای ایجاد ورود پله‌ای و زیبا
+        setTimeout(() => {
+            item.classList.add('is-visible');
+        }, index * 150); // فاصله ۱۵۰ میلی‌ثانیه‌ای بین ورود هر المان
+    });
+
+    // ۲. انیمیشن ورود فریم تصویر اصلی سمت چپ (Scale-down افکت)
+    const imageFrame = document.getElementById('heroImageFrame');
+    if (imageFrame) {
+        setTimeout(() => {
+            imageFrame.classList.add('is-visible');
+        }, 300); // همزمان با لود تیتر اصلی وارد می‌شود
+    }
+
+    // ۳. انیمیشن ورود نشان شناور (Floating Badge) با تأخیر ثانویه
+    const floatingBadge = document.getElementById('heroBadge');
+    if (floatingBadge) {
+        setTimeout(() => {
+            floatingBadge.classList.add('is-visible');
+        }, 850); // بعد از لود کامل تصویر ظاهر می‌شود
+    }
+});
+
+
+// ==========================================================================
+// انیمیشن اسکرول بخش Who We Are با استفاده از Intersection Observer
+// ==========================================================================
+const scrollObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    root: null,
+    threshold: 0.12,
+    rootMargin: "0px 0px -20px 0px"
+});
+
+// مانیتور کردن تمامی آیتم‌های بخش جدید برای انیمیشن ورود آبشاری هنگام اسکرول
+document.querySelectorAll('.reveal-scroll, .reveal-img-scroll, .reveal-img-delayed-scroll').forEach(item => {
+    scrollObserver.observe(item);
+});
+
+
+// ==========================================================================
+// منطق تعاملی رشد خط محوری تایم‌لاین بر اساس میزان اسکرول واقعی کاربر
+// ==========================================================================
+window.addEventListener('scroll', () => {
+    const timelineSection = document.getElementById('storyTimelineSection');
+    const progressFill = document.getElementById('timelineProgress');
+    
+    if (timelineSection && progressFill) {
+        const sectionRect = timelineSection.getBoundingClientRect();
+        const viewHeight = window.innerHeight;
+        
+        // محاسبه میزان ورود بخش تایم‌لاین به درون قاب مرورگر کاربر
+        const sectionHeight = sectionRect.height;
+        const startThreshold = viewHeight * 0.7; // نقطه شروع متوازن فعال‌سازی انیمیشن
+        
+        const scrolledInSection = startThreshold - sectionRect.top;
+        
+        // تبدیل به درصد خط پیشرفت مستقل (محدود بین ۰ تا ۱۰۰)
+        let progressPercent = (scrolledInSection / (sectionHeight - 150)) * 100;
+        progressPercent = Math.max(0, Math.min(100, progressPercent));
+        
+        progressFill.style.height = `${progressPercent}%`;
+    }
+});
+
+// مانیتور کردن کارت‌های تایم‌لاین جهت ورود آبشاری توسط Intersection Observer موجود
+document.querySelectorAll('.reveal-timeline-card').forEach(card => {
+    if (typeof scrollObserver !== 'undefined') {
+        scrollObserver.observe(card);
+    }
+});
+
+
+// ==========================================================================
+// منطق تعاملی فیلتر گالری و لایت‌باکس هوشمند آکادمیک (RTL)
+// ==========================================================================
+
+// آرایه متناظر اطلاعات تصاویر گالری برای لایت‌باکس (قابل مدیریت آسان)
+const galleryData = [
+    { tag: "کتابخانه", caption: "تمرکز و آرامش در تالار مطالعه کتابخانه", src: "https://unsplash.com" },
+    { tag: "آموزشی", caption: "کارگاه‌های تعاملی توسعه مهارت‌های علمی فردی", src: "https://unsplash.com" },
+    { tag: "فرهنگی", caption: "نشست‌های صمیمی گفتگو، نقد کتاب و اندیشه اعضا", src: "https://unsplash.com" },
+    { tag: "رویدادها", caption: "مسابقات منظم و کارگاه‌های مشارکتی سالن همایش", src: "https://unsplash.com" },
+    { tag: "کتابخانه", caption: "دسترسی به منابع دیجیتال مدرن و سیستم اینترنت مجتمع", src: "https://unsplash.com" }
+];
+
+let currentLightboxIndex = 0;
+
+// ۱. مدیریت فیلترهای گالری
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        // تغییر دکمه فعال
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        button.classList.add('active');
+        
+        const filterValue = button.getAttribute('data-filter');
+        
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                item.classList.remove('is-hidden');
+            } else {
+                item.classList.add('is-hidden');
+            }
+        });
+    });
+});
+
+// ۲. توابع اصلی مدیریت لایت‌باکس
+function openLightbox(index) {
+    currentLightboxIndex = index;
+    const lightbox = document.getElementById('galleryLightbox');
+    updateLightboxContent();
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; // قفل کردن اسکرول اصلی صفحه
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('galleryLightbox');
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+function updateLightboxContent() {
+    const data = galleryData[currentLightboxIndex];
+    document.getElementById('lightboxMainImg').src = data.src;
+    document.getElementById('lightboxCategory').innerText = data.tag;
+    document.getElementById('lightboxCaption').innerText = data.caption;
+    
+    // تبدیل شمارنده به اعداد فارسی بومی بوسیله متد تعویض محلی
+    const faIndex = (currentLightboxIndex + 1).toLocaleString('fa-IR');
+    const faTotal = galleryData.length.toLocaleString('fa-IR');
+    document.getElementById('lightboxCounter').innerText = `${faIndex} / ${faTotal}`;
+}
+
+function changeLightboxImage(direction) {
+    // ناوبری چرخشی روی کل تصاویر آرایه گالری
+    currentLightboxIndex += direction;
+    if (currentLightboxIndex >= galleryData.length) currentLightboxIndex = 0;
+    if (currentLightboxIndex < 0) currentLightboxIndex = galleryData.length - 1;
+    updateLightboxContent();
+}
+
+// ۳. پشتیبانی کامل از کلیدهای کیبورد مرورگر جهت دسترسی‌پذیری عالی (Accessibility)
+document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('galleryLightbox');
+    if (lightbox && lightbox.classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') changeLightboxImage(-1); // در فارسی پیکان راست تصویر قبلی را میاورد
+        if (e.key === 'ArrowLeft') changeLightboxImage(1);  // پیکان چپ تصویر بعدی را میاورد
+    }
+});
