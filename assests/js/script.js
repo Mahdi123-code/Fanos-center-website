@@ -490,7 +490,7 @@ function initializeCourseCarousel() {
 
                             <!-- SUBMIT -->
 
-                            <button
+                            <a href="https://fanos-ms.vercel.app/"
                                 type="submit"
                                 class="login-submit"
                                 id="loginSubmit"
@@ -502,7 +502,7 @@ function initializeCourseCarousel() {
 
                                 <i class="bx bx-left-arrow-alt"></i>
 
-                            </button>
+                            </a>
 
 
                             <!-- REGISTER -->

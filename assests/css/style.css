@@ -2876,6 +2876,7 @@ body.login-modal-open {
     .login-overlay {
 
         padding: 12px;
+        padding-top: 80px;
 
     }
 
